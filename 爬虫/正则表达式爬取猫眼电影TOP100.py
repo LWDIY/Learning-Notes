@@ -78,28 +78,6 @@ all_data.to_csv(r'C:\Users\Administrator\Desktop\MaoYanTop100.csv',encoding = 'u
 
 
 
-# 获取网页源代码的函数
-def get_one_url(url):
-     try:
-          header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'
-                     }
-          response = requests.get(url,headers = header)
-          if requests.status.code ==200:
-               return response.content
-          return None
-     except RequestException:
-          return None
-     
-# 解析页面的函数
-
-def parse_one_page(html):
-     pattern = re.compile('<dd>.*?board-index.*?>(.*?)</i>.*?board_img.*?src="(.*?)"  \
-                          .*?name.*?a.*?>(.*?)</a>.*?star.*?>(.*?)</p>.*?releasetime.*?>(.*?)</p> \
-                          .*?integer.*?>(.*?)</i>.*?fraction.*?>(.*?)</i>.*?</dd>',re.S)
-     items = re.findall(pattern,html)
-     for item in items:
-          yield {'ranking':item[0]
-                    }
 
 
 
